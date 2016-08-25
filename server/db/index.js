@@ -1,6 +1,5 @@
 var dbConfig = require('/db.config');
 
-
 var knex = require('knex')({
   client: 'mysql',
   connection: {
@@ -54,17 +53,6 @@ db.knex.schema.hasTable('Users').then(function(exists){
   }
 });
 
-db.knex.schema.hasTable('Keywords').then(function(exists){
-  if(!exists){
-    db.knex.schema.createTable('Keywords', function(keyword){
-      keyword.increments('id').primary();
-      keyword.string('word');
-      keyword.timestamps();
-    }).then(function(table){
-      console.log('Created Keywords Table', table);
-    });  
-  }
-});
 
 db.knex.schema.hasTable('Project-Keywords').then(function(exists){
   if(!exists){
@@ -78,5 +66,17 @@ db.knex.schema.hasTable('Project-Keywords').then(function(exists){
   }
 });
 
-module.exports = db;
+db.knex.schema.hasTable('Keywords').then(function(exists){
+  if(!exists){
+    db.knex.schema.createTable('Keywords', function(keyword){
+      keyword.increments('id').primary();
+      keyword.string('word');
+      keyword.timestamps();
+    }).then(function(table){
+      console.log('Created Keywords Table', table);
+    });  
+  }
+});
 
+
+module.exports = db;
