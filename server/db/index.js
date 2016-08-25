@@ -1,5 +1,6 @@
-// This is Sam's
 var dbConfig = require('/db.config');
+
+
 var knex = require('knex')({
   client: 'mysql',
   connection: {
@@ -78,3 +79,4 @@ db.knex.schema.hasTable('Project-Keywords').then(function(exists){
 });
 
 module.exports = db;
+
